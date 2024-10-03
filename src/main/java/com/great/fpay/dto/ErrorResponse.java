@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 public class ErrorResponse {
 
-    private HttpStatus status;
+    private int status;
 
     private String code;
 
