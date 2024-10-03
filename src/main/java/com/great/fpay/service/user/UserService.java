@@ -1,7 +1,6 @@
 package com.great.fpay.service.user;
 
 import com.great.fpay.dto.UserResponse;
-import com.great.fpay.entity.User;
 import com.great.fpay.exceptions.UserNotFoundException;
 import com.great.fpay.mapper.UserMapper;
 import com.great.fpay.repository.UserRepository;
