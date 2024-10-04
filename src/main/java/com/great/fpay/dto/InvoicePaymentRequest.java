@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Builder
@@ -28,4 +29,6 @@ public class InvoicePaymentRequest {
     @JsonProperty("monto_abonado")
     private BigDecimal amount;
 
+    @JsonProperty("fecha_creacion")
+    private LocalDate date;
 }

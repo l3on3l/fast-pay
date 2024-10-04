@@ -44,5 +44,5 @@ public class Invoice {
     private PaymentOption paymentOption = PaymentOption.FULL;
 
     @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDate createdAt = LocalDate.now();
+    private LocalDate createdAt;
 }

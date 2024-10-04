@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -59,7 +60,7 @@ public class InvoiceService implements IInvoiceService {
         // Obtener la factura
         var serviceCode = ServiceProviderCodeType.getFormattedCode(request.getCode());
         ServiceProvider serviceProvider = serviceProviderRepository.findByServiceCode(serviceCode);
-        Invoice invoice = invoiceRepository.findByServiceProviderIdAndReference(serviceProvider.getId(), request.getReference())
+        Invoice invoice = invoiceRepository.findByServiceProviderIdAndReferenceAndCreatedAt(serviceProvider.getId(), request.getReference(), request.getDate())
                 .orElseThrow(() -> new InvoiceException(HttpStatus.NOT_FOUND, ErrorCatalog.INVOICE_NOT_FOUND));
 
         // Verificar que la factura pertenece al usuario
