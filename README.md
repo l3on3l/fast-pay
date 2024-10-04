@@ -216,7 +216,7 @@ values
     '122239',
     'PENDING',
     'FULL',
-    now()
+    '2024-03-09'
   ),
   (
     3,
@@ -227,7 +227,7 @@ values
     '0991222333',
     'PENDING',
     'FULL',
-    now()
+    '2024-07-19'
   ),
   (
     2,
@@ -238,18 +238,18 @@ values
     '122239',
     'PENDING',
     'FULL',
-    now()
+    '2024-10-04'
   ),
   (
     3,
     5,
-    70000.00,
+    700000.00,
     now() + interval '20 days',
-    70000.00,
+    700000.00,
     '0991222333',
     'PENDING',
     'FULL',
-    now()
+    '2024-10-04'
   ),
   (
     1,
@@ -260,7 +260,7 @@ values
     '16204512',
     'PENDING',
     'FULL',
-    now()
+    '2024-04-14'
   );
  
 -- Insertar filas en la tabla payments
