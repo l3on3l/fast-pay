@@ -298,3 +298,6 @@ Desde la raiz del proyecto ejecutar
 ```
 ./mvnw spring-boot:run
 ```
+
+## Colección de Postman
+Ir a la descarga. [Enlace](https://drive.google.com/file/d/1bU2Zz9CNl0HdaimiRX_SAjhl2tPpEHzP/view?usp=share_link)
