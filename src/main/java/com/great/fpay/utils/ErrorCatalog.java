@@ -14,7 +14,8 @@ public enum ErrorCatalog {
 
     PAYMENT_NOT_FOUND("ERR_PAY_001", "Datos no encontrados."),
 
-    GENERIC_ERROR("ERR_GEN_001", "An unexpected error occurred.");
+    GENERIC_ERROR("ERR_GEN_001", "An unexpected error occurred."),
+    ARGUMENT_NOT_VALID("ERR_GEN_002", "Invalid parameters.");
 
     private final String code;
     private final String message;

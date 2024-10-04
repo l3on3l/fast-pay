@@ -28,7 +28,4 @@ public class Payment {
 
     @Column(name = "paid_amount", nullable = false)
     private BigDecimal paidAmount;
-
-    @Column(name = "invoice_reference")
-    private String invoiceReference;
 }

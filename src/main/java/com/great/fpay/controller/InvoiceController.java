@@ -4,6 +4,7 @@ import com.great.fpay.dto.FullInvoiceResponse;
 import com.great.fpay.dto.InvoicePaymentRequest;
 import com.great.fpay.dto.InvoicePaymentResponse;
 import com.great.fpay.service.invoice.IInvoiceService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,10 @@ public class InvoiceController {
     }
 
     @PostMapping("/user/{userId}/makePayment")
-    public InvoicePaymentResponse makePayment(@PathVariable Long userId, @RequestBody InvoicePaymentRequest request) {
+    public InvoicePaymentResponse makePayment(
+            @PathVariable Long userId,
+            @Valid @RequestBody InvoicePaymentRequest request
+    ) {
         return invoiceService.makePayment(userId, request);
     }
 

@@ -5,7 +5,10 @@ import com.great.fpay.exceptions.InvoiceException;
 import com.great.fpay.exceptions.PaymentException;
 import com.great.fpay.exceptions.ServiceProviderException;
 import com.great.fpay.exceptions.UserException;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -53,6 +56,23 @@ public class GlobalControllerAdvice {
                 .status(ex.getStatus().value())
                 .code(ex.getErrorCatalog().getCode())
                 .message(ex.getErrorCatalog().getMessage())
+                .timeStamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ErrorResponse handleMethodArgumentNotValidException(
+            MethodArgumentNotValidException ex) {
+        BindingResult result = ex.getBindingResult();
+
+        return ErrorResponse.builder()
+                .code(ARGUMENT_NOT_VALID.getCode())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .message(ARGUMENT_NOT_VALID.getMessage())
+                .detailMessages(result.getFieldErrors()
+                        .stream()
+                        .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                        .toList())
                 .timeStamp(LocalDateTime.now())
                 .build();
     }
