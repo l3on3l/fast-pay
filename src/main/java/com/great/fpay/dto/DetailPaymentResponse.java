@@ -1,4 +1,4 @@
-package com.great.fpay.controller;
+package com.great.fpay.dto;
 
 import com.great.fpay.entity.Invoice;
 import lombok.Builder;

@@ -1,7 +1,6 @@
 package com.great.fpay.service.payment;
 
-import com.great.fpay.controller.DetailPaymentResponse;
-import com.great.fpay.exceptions.PaymentException;
+import com.great.fpay.dto.DetailPaymentResponse;
 import com.great.fpay.exceptions.UserException;
 import com.great.fpay.mapper.PaymentMapper;
 import com.great.fpay.repository.PaymentRepository;

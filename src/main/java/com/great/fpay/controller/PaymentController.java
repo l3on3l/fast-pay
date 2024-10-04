@@ -1,5 +1,6 @@
 package com.great.fpay.controller;
 
+import com.great.fpay.dto.DetailPaymentResponse;
 import com.great.fpay.service.payment.IPaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
