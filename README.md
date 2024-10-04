@@ -5,9 +5,10 @@ Este proyecto es un API REST desarrollado con Spring Boot que permite gestionar 
 ![fast-pay](https://github.com/l3on3l/fast-pay/blob/main/diagram.jpg)
 ---
 ## Guia
-- [Ir a la configuración de Postgres](#ejecutar-la-api)
-- [Ir a la ejecución API](#configuración-de-la-base-de-datos)
+- [Ir a la configuración de Postgres](#configuración-de-la-base-de-datos))
+- [Ir a la ejecución API](#ejecutar-la-api)
 - [Colleción de Postman](#colección-de-postman)
+- [TODO](#todo)
 
 ## Tecnologías
 - **Java**: Versión SDK 17.
@@ -306,3 +307,8 @@ Desde la raiz del proyecto ejecutar
 
 ## Colección de Postman
 Ir a la descarga. [Enlace](https://drive.google.com/file/d/1bU2Zz9CNl0HdaimiRX_SAjhl2tPpEHzP/view?usp=share_link)
+
+## TODO 
+- CRUD para User y el flujo de autenticación para el manejo de sesión con JWT para el acceso a la API.
+- Realizar los triggera para insertar elementos en la tabla de Invoice.
+- Documentación de OpenAPI con Swagger.
