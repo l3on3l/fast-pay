@@ -2,6 +2,7 @@ package com.great.fpay.controller;
 
 import com.great.fpay.dto.ErrorResponse;
 import com.great.fpay.exceptions.InvoiceException;
+import com.great.fpay.exceptions.PaymentException;
 import com.great.fpay.exceptions.ServiceProviderException;
 import com.great.fpay.exceptions.UserException;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,16 @@ public class GlobalControllerAdvice {
 
     @ExceptionHandler(InvoiceException.class)
     public ErrorResponse handleInvoiceException(InvoiceException ex) {
+        return ErrorResponse.builder()
+                .status(ex.getStatus().value())
+                .code(ex.getErrorCatalog().getCode())
+                .message(ex.getErrorCatalog().getMessage())
+                .timeStamp(LocalDateTime.now())
+                .build();
+    }
+
+    @ExceptionHandler(PaymentException.class)
+    public ErrorResponse handlePaymentException(InvoiceException ex) {
         return ErrorResponse.builder()
                 .status(ex.getStatus().value())
                 .code(ex.getErrorCatalog().getCode())

@@ -10,7 +10,9 @@ public enum ErrorCatalog {
 
     SERVICE_PROVIDER_NOT_FOUND("ERR_SERVICE_PROVIDER_001", "Service provider not found."),
 
-    INVOICE_NOT_FOUND("ERR_INVOICE_002", "Invoice not found."),
+    INVOICE_NOT_FOUND("ERR_INVOICE_001", "Invoice not found."),
+
+    PAYMENT_NOT_FOUND("ERR_PAY_001", "Datos no encontrados."),
 
     GENERIC_ERROR("ERR_GEN_001", "An unexpected error occurred.");
 
