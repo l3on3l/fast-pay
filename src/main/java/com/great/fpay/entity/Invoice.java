@@ -41,6 +41,7 @@ public class Invoice {
     private InvoiceStatus status = InvoiceStatus.PENDING;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "payment_option")
     private PaymentOption paymentOption = PaymentOption.FULL;
 
     @Column(name = "created_at", nullable = false, updatable = false)
