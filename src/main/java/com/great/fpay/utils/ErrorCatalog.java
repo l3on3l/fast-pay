@@ -6,8 +6,11 @@ import lombok.Getter;
 public enum ErrorCatalog {
 
     USER_NOT_FOUND("ERR_USER_001", "User not found."),
+    INSUFFICIENT_BALANCE("ERR_USER_002", "Insufficient balance to complete the transaction"),
 
     SERVICE_PROVIDER_NOT_FOUND("ERR_SERVICE_PROVIDER_001", "Service provider not found."),
+
+    INVOICE_NOT_FOUND("ERR_INVOICE_002", "Invoice not found."),
 
     GENERIC_ERROR("ERR_GEN_001", "An unexpected error occurred.");
 

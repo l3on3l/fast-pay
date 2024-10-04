@@ -9,4 +9,6 @@ public interface ServiceProviderRepository extends JpaRepository<ServiceProvider
 
     List<ServiceProvider> findByNameContainingIgnoreCase(String name);
 
+    ServiceProvider findByServiceCode(String serviceCode);
+
 }
