@@ -3,6 +3,11 @@
 Este proyecto es un API REST desarrollado con Spring Boot que permite gestionar los pagos de servicios públicos y privados. Los usuarios pueden realizar pagos, consultar el estado de sus facturas y llevar un historial de sus transacciones.
 
 ![fast-pay](https://github.com/l3on3l/fast-pay/blob/main/diagram.jpg)
+---
+## Guia
+- [Ir a la configuración de Postgres](#ejecutar-la-api)
+- [Ir a la ejecución API](#configuración-de-la-base-de-datos)
+- [Colleción de Postman](#colección-de-postman)
 
 ## Tecnologías
 - **Java**: Versión SDK 17.
