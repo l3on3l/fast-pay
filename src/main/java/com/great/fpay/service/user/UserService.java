@@ -1,10 +1,12 @@
 package com.great.fpay.service.user;
 
 import com.great.fpay.dto.UserResponse;
-import com.great.fpay.exceptions.UserNotFoundException;
+import com.great.fpay.exceptions.UserException;
 import com.great.fpay.mapper.UserMapper;
 import com.great.fpay.repository.UserRepository;
+import com.great.fpay.utils.ErrorCatalog;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class UserService implements IUserService {
     public UserResponse findById(Long id) {
         return userRepository.findById(id)
                 .map(userMapper::toUserResponse)
-                .orElseThrow(UserNotFoundException::new);
+                .orElseThrow(() -> new UserException(HttpStatus.NOT_FOUND, ErrorCatalog.USER_NOT_FOUND));
     }
 
     @Override
@@ -35,7 +37,7 @@ public class UserService implements IUserService {
     @Override
     public void deleteById(Long id) {
         if (userRepository.findById(id).isEmpty()) {
-            throw new UserNotFoundException();
+            throw new UserException(HttpStatus.NOT_FOUND, ErrorCatalog.USER_NOT_FOUND);
         }
 
         userRepository.deleteById(id);

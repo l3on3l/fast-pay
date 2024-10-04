@@ -1,10 +1,13 @@
 package com.great.fpay.service.serviceProvider;
 
 import com.great.fpay.dto.ServiceProviderResponse;
-import com.great.fpay.exceptions.ServiceProviderNotFoundException;
+import com.great.fpay.exceptions.ServiceProviderException;
+import com.great.fpay.exceptions.UserException;
 import com.great.fpay.mapper.ServiceProviderMapper;
 import com.great.fpay.repository.ServiceProviderRepository;
+import com.great.fpay.utils.ErrorCatalog;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +24,7 @@ public class ServiceProviderService implements IServiceProviderService {
     public ServiceProviderResponse findById(Long id) {
         return serviceProviderRepository.findById(id)
                 .map(serviceProviderMapper::toServiceProviderResponse)
-                .orElseThrow(ServiceProviderNotFoundException::new);
+                .orElseThrow(() -> new UserException(HttpStatus.NOT_FOUND, ErrorCatalog.SERVICE_PROVIDER_NOT_FOUND));
     }
 
     @Override
@@ -43,7 +46,7 @@ public class ServiceProviderService implements IServiceProviderService {
     @Override
     public void deleteById(Long id) {
         if (serviceProviderRepository.findById(id).isEmpty()) {
-            throw new ServiceProviderNotFoundException();
+            throw new UserException(HttpStatus.NOT_FOUND, ErrorCatalog.SERVICE_PROVIDER_NOT_FOUND);
         }
 
         serviceProviderRepository.deleteById(id);

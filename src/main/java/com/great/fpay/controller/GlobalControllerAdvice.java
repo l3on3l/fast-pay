@@ -1,38 +1,49 @@
 package com.great.fpay.controller;
 
 import com.great.fpay.dto.ErrorResponse;
-import com.great.fpay.exceptions.ServiceProviderNotFoundException;
-import com.great.fpay.service.exception.IExceptionHandlingService;
-import com.great.fpay.exceptions.UserNotFoundException;
-import lombok.RequiredArgsConstructor;
+import com.great.fpay.exceptions.ServiceProviderException;
+import com.great.fpay.exceptions.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.time.LocalDateTime;
+import java.util.Collections;
 
 import static com.great.fpay.utils.ErrorCatalog.*;
 
 @RestControllerAdvice
-@RequiredArgsConstructor
 public class GlobalControllerAdvice {
 
-    private final IExceptionHandlingService exceptionHandlingService;
-
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(UserNotFoundException.class)
-    public ErrorResponse handleUserNotFoundException() {
-        return exceptionHandlingService.handleHttpRequestException(HttpStatus.NOT_FOUND, USER_NOT_FOUND);
+    @ExceptionHandler(UserException.class)
+    public ErrorResponse handleUserException(UserException ex) {
+        return ErrorResponse.builder()
+                .status(ex.getStatus().value())
+                .code(ex.getErrorCatalog().getCode())
+                .message(ex.getErrorCatalog().getMessage())
+                .timeStamp(LocalDateTime.now())
+                .build();
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ServiceProviderNotFoundException.class)
-    public ErrorResponse handleServiceProviderNotFoundException() {
-        return exceptionHandlingService.handleHttpRequestException(HttpStatus.NOT_FOUND, SERVICE_PROVIDER_NOT_FOUND);
+    @ExceptionHandler(ServiceProviderException.class)
+    public ErrorResponse handleServiceException(ServiceProviderException ex) {
+        return ErrorResponse.builder()
+                .status(ex.getStatus().value())
+                .code(ex.getErrorCatalog().getCode())
+                .message(ex.getErrorCatalog().getMessage())
+                .timeStamp(LocalDateTime.now())
+                .build();
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ErrorResponse handleInternalServeError(Exception exception) {
-        return exceptionHandlingService.handleHttpRequestException(HttpStatus.INTERNAL_SERVER_ERROR, GENERIC_ERROR);
+    public ErrorResponse handleInternalServeError(Exception ex) {
+        return ErrorResponse.builder()
+                .code(GENERIC_ERROR.getCode())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message(GENERIC_ERROR.getMessage())
+                .detailMessages(Collections.singletonList(ex.getMessage()))
+                .timeStamp(LocalDateTime.now())
+                .build();
     }
+
 }
